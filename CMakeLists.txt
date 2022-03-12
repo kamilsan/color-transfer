@@ -13,17 +13,28 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rd_party)
+set(STB_LIB_DIR ${THIRD_PARTY_DIR}/stb)
+
+message(${THIRD_PARTY_DIR})
+
 set(PROJECT_SOURCE
-  src/test.cpp
+  src/image.cpp
   src/main.cpp
 )
 
 set(PROJECT_HEADERS
-
+  include/image.hpp
+  ${STB_LIB_DIR}/stb_image.h
+  ${STB_LIB_DIR}/stb_image_write.h
 )
 
 add_executable(color-transfer
   ${PROJECT_SOURCE}
 )
 
-target_include_directories(color-transfer PRIVATE include)
+target_include_directories(color-transfer 
+  PRIVATE 
+    include
+    ${STB_LIB_DIR}
+)
