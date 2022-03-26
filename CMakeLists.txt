@@ -19,11 +19,16 @@ set(STB_LIB_DIR ${THIRD_PARTY_DIR}/stb)
 message(${THIRD_PARTY_DIR})
 
 set(PROJECT_SOURCE
+  src/ColorLMS.cpp
+  src/ColorLAlphaBeta.cpp
   src/image.cpp
   src/main.cpp
 )
 
 set(PROJECT_HEADERS
+  include/ColorRGB.hpp
+  include/ColorLMS.hpp
+  include/ColorLAlphaBeta.hpp
   include/image.hpp
   ${STB_LIB_DIR}/stb_image.h
   ${STB_LIB_DIR}/stb_image_write.h
