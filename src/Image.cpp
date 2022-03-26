@@ -1,6 +1,7 @@
-#include "image.hpp"
+#include "Image.hpp"
 
 #include <cstring>
+#include <stdexcept>
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -10,7 +11,11 @@
 
 Image::Image(const std::string& filename) {
   int x, y, n;
-  unsigned char* data = stbi_load(filename.c_str(), &x, &y, &n, 0);
+  unsigned char* data = stbi_load(filename.c_str(), &x, &y, &n, 3);
+
+  if(!data) {
+    throw std::runtime_error("Failed to load image: " + filename + "!");
+  }
 
   width_ = x;
   height_ = y;

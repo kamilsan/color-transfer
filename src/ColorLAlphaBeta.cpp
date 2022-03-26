@@ -2,9 +2,9 @@
 
 #include <cmath>
 
-#include "ColorLMS.hpp"
+#include "ColorLogLMS.hpp"
 
-ColorLMS ColorLAlphaBeta::toLMS() const {
+ColorLogLMS ColorLAlphaBeta::toLogLMS() const {
   const auto lScaled = std::sqrt(3.0f) / 3.0f * l;
   const auto alphaScaled = std::sqrt(6.0f) / 6.0f * alpha;
   const auto betaScaled = std::sqrt(2.0f) / 2.0f * beta; 
@@ -13,10 +13,10 @@ ColorLMS ColorLAlphaBeta::toLMS() const {
   const auto m = lScaled + alphaScaled - betaScaled;
   const auto s = lScaled - 2.0f * alphaScaled;
 
-  return ColorLMS{l, m, s};
+  return ColorLogLMS{l, m, s};
 }
 
-ColorLAlphaBeta ColorLAlphaBeta::fromLMS(const ColorLMS& lms) {
+ColorLAlphaBeta ColorLAlphaBeta::fromLogLMS(const ColorLogLMS& lms) {
   const auto l     = lms.l + lms.m + lms.s;
   const auto alpha = lms.l + lms.m - 2.0f * lms.s;
   const auto beta  = lms.l - lms.m;
